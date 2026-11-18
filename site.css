@@ -1,3 +1,20 @@
 :root{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:#1a1a1a;background:#F5F7FA;line-height:1.7}*{box-sizing:border-box}body{margin:0}.site-header{display:flex;align-items:center;gap:18px;padding:22px max(5vw,20px);background:white;border-bottom:1px solid #e0e0e0}.site-header img{object-fit:contain;flex-shrink:0}.site-company{margin:0;color:#0C447C;font-size:14px}h1{margin:0;font-size:clamp(18px,3vw,26px);font-weight:600}.environment-tag{margin-left:auto;background:#FAEEDA;color:#633806;border-radius:6px;padding:5px 12px;font-size:14px;white-space:nowrap}main{max-width:1020px;margin:40px auto;padding:0 20px;display:grid;grid-template-columns:1.1fr 1fr;gap:24px}.login-card,.status-card{padding:30px;background:#fff;border:1px solid #e8e8e8;border-radius:12px;min-width:0}h2{font-size:21px;margin:0 0 18px}.eyebrow{font-size:14px;color:#0C447C;margin:0 0 8px}.notice{border-left:4px solid #EF9F27;background:#FAEEDA;padding:14px;font-size:15px}label{display:block;margin:14px 0 6px}input,button{width:100%;padding:12px;border:1px solid #d0d0d0;border-radius:6px;font:inherit}input:disabled{background:#F5F5F5;color:#666}button{margin-top:22px;background:#0C447C;color:white}button:disabled{opacity:.62;cursor:not-allowed}.login-note,footer{font-size:13px;color:#666}.status-card p,.status-card li{font-size:15px}ul{padding-left:22px}footer{text-align:center;padding:0 20px 24px;overflow-wrap:anywhere}@media(max-width:720px){.site-header{flex-wrap:wrap;padding:16px;gap:12px}.environment-tag{margin-left:80px}main{grid-template-columns:1fr;margin:24px auto;padding:0 12px}.login-card,.status-card{padding:22px}.site-header img{width:56px;height:56px}}
 
 /* Brand palette restored from apps-script-official/Index.html. Keep authentication disabled until verified. */
+
+/* Original GAS production visual identity, matched to supplied screenshot */
+:root{background:#f4f1e9;color:#3f5c62}
+body{background:#f4f1e9;color:#3f5c62}
+.site-header{background:#f4f1e9;border-bottom-color:#e2e0d6}
+.site-company{color:#405f66}
+h1,h2{color:#3e5b61}
+main{max-width:1140px}
+.login-card,.status-card{background:#fff;border-color:#d9ded8;border-radius:9px}
+.eyebrow{color:#47656a}
+.environment-tag{background:#eae9dc;color:#3d595f}
+.notice{background:#f7f5ed;border-left-color:#405e64;color:#405e64}
+label{color:#405e64}
+input,button{border-color:#cad8dc;border-radius:7px}
+input:disabled{background:#f6f6f2;color:#667a7e}
+button{background:#405d63;color:white}
+.login-note,footer{color:#62777a}
