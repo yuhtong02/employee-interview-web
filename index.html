@@ -1,2 +1,37 @@
 <!doctype html>
-<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>鈺通營造｜員工面談暨考績管理系統</title><style>body{font-family:system-ui,"Noto Sans TC",sans-serif;background:#f6f7f9;color:#253144;min-height:100vh;display:grid;place-items:center;margin:0;padding:20px;box-sizing:border-box}main{background:white;border:1px solid #e2e6ec;border-radius:18px;padding:36px;max-width:530px;box-shadow:0 8px 25px #2531440a}h1{font-size:1.4rem}p{line-height:1.8;color:#5a6473}small{color:#7c8795}</style></head><body><main><h1>鈺通營造｜員工面談暨考績管理系統</h1><p>網站正在進行正式前端與安全後端串接，登入及員工資料匯入功能尚未開放。</p><p>為保護員工個資與考績資料，目前不提供登入或資料上傳。</p><small>此頁為部署入口，非已啟用的面談系統。</small></main></body></html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <title>鈺通營造｜員工面談暨考績管理系統</title>
+  <link rel="stylesheet" href="./site.css">
+</head>
+<body>
+  <header class="site-header">
+    <img src="./assets/yuhtong-logo-transparent.png" alt="鈺通營造公司標誌" width="68" height="68">
+    <div><p class="site-company">鈺通營造工程股份有限公司</p><h1>員工面談暨考績管理系統</h1></div>
+    <span class="environment-tag">正式網站準備中</span>
+  </header>
+  <main>
+    <section class="login-card" aria-labelledby="login-title">
+      <p class="eyebrow">員工・主管・人事服務入口</p>
+      <h2 id="login-title">登入面談系統</h2>
+      <p class="notice" role="status">網站前端已準備。正式後端跨網域登入與資料儲存尚未驗證，暫不接受帳密或員工資料。</p>
+      <label for="account">帳號</label><input id="account" disabled placeholder="正式登入尚未啟用" autocomplete="off">
+      <label for="password">密碼</label><input id="password" type="password" disabled autocomplete="off">
+      <button type="button" disabled>登入尚未啟用</button>
+      <p class="login-note">尚未開放填寫、名冊匯入或考績管理；本頁不會讀取或儲存員工資料。請等待人事確認後公告。</p>
+    </section>
+    <section class="status-card" aria-labelledby="status-title">
+      <h2 id="status-title">服務啟用狀態</h2>
+      <ul><li>網站前端：靜態入口已準備。</li><li>登入與 Email 驗證：待正式串接驗收。</li><li>名冊匯入與 Google Sheets 儲存：尚未啟用。</li><li>員工自評與人事紙本評分：待正式串接驗收。</li></ul>
+      <p>考績期別：115 年下半年（2026/07/01～2026/12/31）。不限制最低任職月數。</p>
+      <p>主管採紙本評分，由人事登錄。不同工地採有效最終分數等權平均；資料完整及核對完成前不產生平均，平均不等於公司正式核定。</p>
+    </section>
+  </main>
+  <footer>鈺通營造｜網站入口版本 pages-production-entry-20261118</footer>
+</body>
+</html>
