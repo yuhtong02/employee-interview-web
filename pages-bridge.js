@@ -14,7 +14,8 @@
   if(d.type==='HR_PAGES_STATUS'&&(d.status==='NOT_OPEN'||d.status==='LOAD_FAILED')){if(source&&source!==event.source&&belongs(source))return;close(d.status==='NOT_OPEN'?'登入服務暫時無法使用。請稍後重新載入；若仍有問題，請聯絡系統管理員。':'登入介面未能啟動，請按重新載入；若持續失敗，請聯絡系統管理員。',d.status==='NOT_OPEN');return;}
   if(d.type==='HR_PAGES_METRIC'){
    if(!connected||source!==event.source||sourceOrigin!==event.origin)return;
-   if(!['formReady','loginRpc','home','refreshedHome'].includes(d.phase)||!Number.isFinite(d.elapsedMs)||d.elapsedMs<0||d.elapsedMs>3600000)return;
+   if(!['formReady','loginStart','loginRpc','home','refreshedHome','backendTotal','backendKdf','backendRead','backendMetadata','backendVersionProbe','backendLock','backendWrite'].includes(d.phase)||!Number.isFinite(d.elapsedMs)||d.elapsedMs<0||d.elapsedMs>3600000)return;
+   if(d.phase==='loginStart'){for(const key of Object.keys(measures))if(!['helloMs','handshakeMs','formReadyMs'].includes(key))delete measures[key];return;}
    measures[d.phase+'Ms']=d.phase==='formReady'?Date.now()-startedAt:d.elapsedMs;return;
   }
   if(d.type==='HR_PAGES_HELLO'){
