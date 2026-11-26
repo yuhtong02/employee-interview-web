@@ -2,6 +2,7 @@
 (()=>{
  const button=document.getElementById('connectBackend'),status=document.getElementById('connectionStatus'),label=document.getElementById('connectionLabel'),slot=document.getElementById('frameSlot'),host=document.getElementById('applicationHost'),panel=document.getElementById('connectionPanel');
  let channel=null,frame=null,source=null,sourceOrigin=null,timer=null,acceptTimer=null,connected=false;
+ const startedAt=Date.now(),measures={};window.HRPagesTiming={snapshot:()=>({...measures})};
  const googleOrigin=o=>typeof o==='string'&&/^https:\/\/(?:script\.googleusercontent\.com|[a-z0-9-]+\.googleusercontent\.com)$/.test(o);
  // Check live descendants, not a detached frame's retained parent reference.
  function belongs(peer){if(!frame?.contentWindow)return false;const queue=[frame.contentWindow],seen=new Set();for(let i=0;i<queue.length&&i<48;i++){const w=queue[i];if(w===peer)return true;if(seen.has(w))continue;seen.add(w);try{for(let j=0;j<Math.min(w.length,16);j++)queue.push(w[j]);}catch{}}return false;}
@@ -11,12 +12,18 @@
  window.addEventListener('message',event=>{
   const d=event.data;if(!frame||!channel||!googleOrigin(event.origin)||!event.source||!d||typeof d!=='object'||d.channel!==channel||!belongs(event.source))return;
   if(d.type==='HR_PAGES_STATUS'&&(d.status==='NOT_OPEN'||d.status==='LOAD_FAILED')){if(source&&source!==event.source&&belongs(source))return;close(d.status==='NOT_OPEN'?'登入服務暫時無法使用。請稍後重新載入；若仍有問題，請聯絡系統管理員。':'登入介面未能啟動，請按重新載入；若持續失敗，請聯絡系統管理員。',d.status==='NOT_OPEN');return;}
+  if(d.type==='HR_PAGES_METRIC'){
+   if(!connected||source!==event.source||sourceOrigin!==event.origin)return;
+   if(!['formReady','loginRpc','home','refreshedHome'].includes(d.phase)||!Number.isFinite(d.elapsedMs)||d.elapsedMs<0||d.elapsedMs>3600000)return;
+   measures[d.phase+'Ms']=d.phase==='formReady'?Date.now()-startedAt:d.elapsedMs;return;
+  }
   if(d.type==='HR_PAGES_HELLO'){
+   if(measures.helloMs===undefined)measures.helloMs=Date.now()-startedAt;
    if(connected){if(source===event.source&&sourceOrigin===event.origin)source.postMessage({type:'HR_PAGES_ACCEPT',channel},sourceOrigin);return;}
    if(source&&source!==event.source&&belongs(source))return;
    source=event.source;sourceOrigin=event.origin;accept();return;
   }
-  if(d.type==='HR_PAGES_READY'&&source===event.source&&sourceOrigin===event.origin){connected=true;stopTimers();host.hidden=false;panel.hidden=true;label.textContent='登入介面已連線，請依系統驗證';source.postMessage({type:'HR_PAGES_READY_ACK',channel},sourceOrigin);}
+  if(d.type==='HR_PAGES_READY'&&source===event.source&&sourceOrigin===event.origin){measures.handshakeMs=Date.now()-startedAt;connected=true;stopTimers();host.hidden=false;panel.hidden=true;label.textContent='登入介面已連線，請依系統驗證';source.postMessage({type:'HR_PAGES_READY_ACK',channel},sourceOrigin);}
  });
  function connect(){
   if(button.disabled&&frame)return;
